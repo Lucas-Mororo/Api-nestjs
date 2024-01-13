@@ -5,6 +5,7 @@ import {
   MinLength,
   MaxLength,
 } from 'class-validator';
+import { EmailEhUnico } from '../validacao/email-eh-unico.validator';
 
 export class CreateUsuarioDto {
   @IsString({ message: 'O nome deve ser uma string.' })
@@ -15,6 +16,7 @@ export class CreateUsuarioDto {
   @IsEmail({}, { message: 'O e-mail fornecido é inválido.' })
   @IsNotEmpty({ message: 'O e-mail não pode estar vazio.' })
   @MaxLength(255, { message: 'O e-mail não pode ter mais de 255 caracteres.' })
+  @EmailEhUnico({ message: 'O e-mail ja está em uso.' })
   email: string;
 
   @IsString({ message: 'A senha deve ser uma string.' })
